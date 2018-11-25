@@ -1,0 +1,1307 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ptdv-chat",
+		"_postman_id": "4950b079-2cc6-f76d-6c96-4c5e0bd11f6a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"description": "",
+			"item": [
+				{
+					"name": "/api/chats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"name\": \"Chat 1\"\n\t},\n\t{\n\t\t\"name\": \"Chat 2\"\n\t},\n\t{\n\t\t\"name\": \"Chat 3\"\n\t}\n]"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// var users = JSON.parse(responseBody);\r",
+									"// tests[\"Users length is correct (\" + users.length + \")\"] = users.length === 3;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\": \"testuser\", \"password\": \"password\" }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// var users = JSON.parse(responseBody);\r",
+									"// tests[\"Users length is correct (\" + users.length + \")\"] = users.length === 3;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "http://{{Host}}/api/authenticate?username=testuser",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "testuser",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\": \"testuser\" }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// var users = JSON.parse(responseBody);\r",
+									"// tests[\"Users length is correct (\" + users.length + \")\"] = users.length === 3;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/logout",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\": \"testuser\" }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chats",
+			"description": "",
+			"item": [
+				{
+					"name": "/api/chats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"name\": \"Chat 1\"\n\t},\n\t{\n\t\t\"name\": \"Chat 2\"\n\t},\n\t{\n\t\t\"name\": \"Chat 3\"\n\t}\n]"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var chats = JSON.parse(responseBody);\r",
+									"tests[\"Chats length is correct (\" + chats.length + \")\"] = chats.length === 3;\r",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats?id=2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var chats = JSON.parse(responseBody);\r",
+									"tests[\"Chats length is correct (\" + chats.length + \")\"] = chats.length === 1;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats?id=2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/messages - 0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"chatId\":2,\"message\":{\"id\":0,\"timestamp\":\"2017-04-01T18:24:18.710Z\",\"username\":\"user 1\",\"message\":\"message 1\"}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/messages - 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"chatId\":2,\"message\":{\"id\":1,\"timestamp\":\"2017-04-01T18:24:18.710Z\",\"username\":\"user 1\",\"message\":\"message 1\"}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/messages - 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"chatId\":2,\"message\":{\"id\":2,\"timestamp\":\"2017-04-01T18:24:18.710Z\",\"username\":\"user 1\",\"message\":\"message 1\"}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/messages - 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"chatId\":2,\"message\":{\"id\":3,\"timestamp\":\"2017-04-01T18:24:18.710Z\",\"username\":\"user 1\",\"message\":\"message 1\"}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/messages - 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"chatId\":2,\"message\":{\"id\":4,\"timestamp\":\"2017-04-01T18:24:18.710Z\",\"username\":\"user 1\",\"message\":\"message 1\"}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/messages?id=2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var messages = JSON.parse(responseBody);\r",
+									"tests[\"Number of chat messsages returned is correct (\" + messages.length + \")\"] = messages.length === 2;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/messages?id=2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"chatId\":3,\"message\":{\"id\":1,\"timestamp\":\"2017-04-01T18:24:18.710Z\",\"username\":\"user 1\",\"message\":\"message 1\"}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/messages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var messages = JSON.parse(responseBody);\r",
+									"tests[\"Number of chat messsages returned is correct (\" + messages.length + \")\"] = messages.length === 5;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/messages",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"chatId\":3,\"message\":{\"id\":1,\"timestamp\":\"2017-04-01T18:24:18.710Z\",\"username\":\"user 1\",\"message\":\"message 1\"}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 2,\n\t\"name\": \"Chat Two\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var chats = JSON.parse(responseBody);\r",
+									"tests[\"Chats content correct by name (\" + chats[1].name + \")\"] = chats[1].name === \"Chat Two\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/3",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var chats = JSON.parse(responseBody);\r",
+									"tests[\"Chats length is correct (\" + chats.length + \")\"] = chats.length === 0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"description": "",
+			"item": [
+				{
+					"name": "/api/chats copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"name\": \"Chat 1\"\n\t},\n\t{\n\t\t\"name\": \"Chat 2\"\n\t},\n\t{\n\t\t\"name\": \"Chat 3\"\n\t}\n]"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"chatId\":2,\"user\":{\"username\": \"user1\"}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"chatId\":2,\"user\":{\"username\": \"user2\"}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"chatId\":2,\"user\":{\"username\": \"user3\"}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"chatId\":2,\"user\":{\"username\": \"user4\"}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var users = JSON.parse(responseBody);\r",
+									"tests[\"Users length is correct (\" + users.length + \")\"] = users.length === 4;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/users",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users?id=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var users = JSON.parse(responseBody);\r",
+									"tests[\"Users length is correct (\" + users.length + \")\"] = users.length === 2;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "http://{{Host}}/api/chats/2/users?id=1",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"2",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users?id=3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "http://{{Host}}/api/chats/2/users?id=3",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"2",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users?id=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var users = JSON.parse(responseBody);\r",
+									"tests[\"Users length is correct (\" + users.length + \")\"] = users.length === 1;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "http://{{Host}}/api/chats/2/users?id=1",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"2",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var users = JSON.parse(responseBody);\r",
+									"tests[\"Users length is correct (\" + users.length + \")\"] = users.length === 3;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/users",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users?id=0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "http://{{Host}}/api/chats/2/users?id=0",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"2",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users?id=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "http://{{Host}}/api/chats/2/users?id=1",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"2",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users?id=2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "http://{{Host}}/api/chats/2/users?id=2",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"2",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chats/2/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var users = JSON.parse(responseBody);\r",
+									"tests[\"Users length is correct (\" + users.length + \")\"] = users.length === 0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{Host}}/api/chats/2/users",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

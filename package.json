@@ -1,0 +1,15 @@
+{
+  "name": "@chat-app/server-node",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "nodemon index.js -vvv | bunyan"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "lodash": "^4.17.4",
+    "restify": "^5.0.0",
+    "restify-cors-middleware": "^1.0.0"
+  }
+}
