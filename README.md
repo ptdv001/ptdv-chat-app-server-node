@@ -19,3 +19,5 @@ Future Planned APIs:
 /healthCheck
 /api/chats/:chatId/messages     (returns only messages)
 /api/chats/:chatId/users        (returns only users data)
+
+/api/locales
