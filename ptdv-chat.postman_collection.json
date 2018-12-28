@@ -1932,6 +1932,48 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "localized-strings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ed0d49e-41d8-45b8-86d4-45c48a063975",
+								"exec": [
+									"var localizedStringsResponse = JSON.parse(responseBody);\r",
+									"tests[\"Localized strings returned hello world (\" + localizedStringsResponse.helloWorld + \")\"] = localizedStringsResponse.helloWorld !== undefined;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{Host}}/api/localized-strings",
+							"protocol": "http",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"api",
+								"localized-strings"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
